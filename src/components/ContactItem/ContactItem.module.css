@@ -1,0 +1,23 @@
+.contact-item{
+margin-block: 5px;
+}
+
+.btn {
+    padding: 5px 10px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #fb0606;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: rgba(255, 255, 255, 0.377)606;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.326);
+}
+
+
+.contact-name{
+    font-weight: bold;
+}

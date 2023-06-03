@@ -1,0 +1,18 @@
+.formGroup{
+    margin-block: 10px;
+}
+
+.btn {
+    padding: 5px 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background: royalblue;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: rgba(255, 255, 255, 0.377)606;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.326);
+}
