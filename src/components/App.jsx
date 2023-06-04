@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter';
 import { ContactList } from './ContactList/ContactList';
+import Notiflix from 'notiflix';
 
 export class App extends Component {
   state = {
@@ -45,14 +46,47 @@ export class App extends Component {
       <>
         <h1>PhoneBook</h1>
         <ContactForm onSubmit={this.handleSubmit} />
-        <h2>Contacts:</h2>
-        <Filter filterValue={filter} onFilterChange={this.handleFilterChange} />
-        <ContactList
-          contacts={contacts}
-          filter={filter}
-          onDeleteContact={this.handleDeleteContact}
-        />
+        {contacts.length > 0 ? (
+          <>
+            <h2>Contacts:</h2>
+            <Filter
+              filterValue={filter}
+              onFilterChange={this.handleFilterChange}
+            />
+            <ContactList
+              contacts={contacts}
+              filter={filter}
+              onDeleteContact={this.handleDeleteContact}
+            />
+          </>
+        ) : (
+          <p>Your phonebook is empty.</p>
+        )}
       </>
     );
+  }
+
+  componentDidMount() {
+    try {
+      this.setState({
+        contacts: JSON.parse(localStorage.getItem('contacts')) || [],
+      });
+    } catch (error) {
+      console.log(`getting data from localstorage failed: ${error}`);
+      Notiflix.Notify.failure(
+        'Nie udało się odczytać zapisanych wcześniej danych.'
+      );
+    }
+  }
+
+  componentDidUpdate() {
+    try {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    } catch (error) {
+      console.log(`updating localstorage failed: ${error}`);
+      Notiflix.Notify.failure(
+        'Wprowadzone dane nie zostały zapisane w pamięci.'
+      );
+    }
   }
 }

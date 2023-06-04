@@ -30,5 +30,5 @@ ContactItem.propTypes = {
     name: PropTypes.string,
     number: PropTypes.string,
   }).isRequired,
-  deleteContact: PropTypes.func.isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
 };
