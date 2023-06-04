@@ -7,12 +7,7 @@ import Notiflix from 'notiflix';
 
 export class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     filter: '',
   };
 
@@ -74,7 +69,7 @@ export class App extends Component {
     } catch (error) {
       console.log(`getting data from localstorage failed: ${error}`);
       Notiflix.Notify.failure(
-        'Nie udało się odczytać zapisanych wcześniej danych.'
+        'Reading your contacts from memory failed.'
       );
     }
   }
@@ -85,7 +80,7 @@ export class App extends Component {
     } catch (error) {
       console.log(`updating localstorage failed: ${error}`);
       Notiflix.Notify.failure(
-        'Wprowadzone dane nie zostały zapisane w pamięci.'
+        'New contact was not added to memory.'
       );
     }
   }
