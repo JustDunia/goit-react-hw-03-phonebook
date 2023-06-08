@@ -68,20 +68,18 @@ export class App extends Component {
       });
     } catch (error) {
       console.log(`getting data from localstorage failed: ${error}`);
-      Notiflix.Notify.failure(
-        'Reading your contacts from memory failed.'
-      );
+      Notiflix.Notify.failure('Reading your contacts from memory failed.');
     }
   }
 
-  componentDidUpdate() {
-    try {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    } catch (error) {
-      console.log(`updating localstorage failed: ${error}`);
-      Notiflix.Notify.failure(
-        'New contact was not added to memory.'
-      );
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      try {
+        localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+      } catch (error) {
+        console.log(`updating localstorage failed: ${error}`);
+        Notiflix.Notify.failure('New contact was not added to memory.');
+      }
     }
   }
 }
